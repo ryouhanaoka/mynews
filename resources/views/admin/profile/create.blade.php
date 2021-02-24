@@ -10,10 +10,10 @@ width, initial-scale=1">
         <title>profile</title>
     </head>
     <body>
-        <h1>プロフィール画面</h1>
+
         
     @extends('layouts.profile')
-        @section('title','プロフィール')
+        @section('title','My プロフィール')
         
         @section('content')
         <div class="contener">
