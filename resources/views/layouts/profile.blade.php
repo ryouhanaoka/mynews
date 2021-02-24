@@ -27,7 +27,7 @@ type="text/css">
         
         <link href="{{ secure_asset('css/app.css')}}" 
 rel="stylesheet">
-        <link href="{{ secure_asset('css/admin.css')
+        <link href="{{ secure_asset('css/profile.css')
 }}" rel="stylesheet">        
     </head>
     <body>

@@ -11,5 +11,18 @@ width,　initial-scale=1">
     </head>
     <body>
         <h1>Myニュース制作画面</h1>
+        
+    @extends('layouts.admin')
+        @section('title', 'ニュースの新規作成')
+        
+        @section('content')
+        <div class="conteiner">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <h2>ニュースの新規作成</h2>
+                </div>
+            </div>
+        </div>
+    @endsection
     </body>
 </html>

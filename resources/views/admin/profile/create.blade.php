@@ -10,6 +10,19 @@ width, initial-scale=1">
         <title>profile</title>
     </head>
     <body>
-        <h1>add action</h1>
+        <h1>プロフィール画面</h1>
+        
+    @extends('layouts.profile')
+        @section('title','プロフィール')
+        
+        @section('content')
+        <div class="contener">
+            <div class="row">
+                <div>
+                    <h2>プロフィール</h2>
+                </div>
+            </div>
+        </div>
+    @endsection
     </body>
 </html>
