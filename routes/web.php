@@ -14,17 +14,20 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['prefix' => 'admin'] , function() {
-    Route::get('news/create', 'Admin\NewsController@add');});
-
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    Route::get('news/create', 'Admin\NewsController@add');
+    Route::post('news/create', 'Admin\NewsController@create');
+});
 //課題3//
 Route::get('XXX', 'AAAController@bbb');
     
 //課題4//
-Route::get('admin/profile/create',
-'Admin\ProfileController@add')->middleware('auth');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth' ], function() {
+    Route::get('profile/create', 'Admin\ProfileController@add');
+    Route::Post('profile/create', 'Admin\ProfileController@create');
+});
 
-Route::get('admin/profile/edit',
-'Admin\ProfileController@edit')->middleware('auth'); Auth::routes();
+Route::get('admin/profile/edit', 'Admin\ProfileController@edit')->middleware('auth'); Auth::routes();
+Route::post('admin/profile/edit', 'Admin\ProfileController@update')->middleware('auth'); Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
