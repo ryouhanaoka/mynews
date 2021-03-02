@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pfofile extends Model
+class Profile extends Model
 {
     protected $guarded = array('id');
     
