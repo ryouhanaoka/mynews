@@ -40,9 +40,9 @@
                         <tbody>
                             @foreach($posts as $news)
                                <tr>
-                                   <tr>{{ $news->id }}</tr>
-                                   <td>{{ \Str::limit($news->title,100) }}</td>
-                                   <td>{{ \Str::limit($news->body, 250) }}</td>
+                                   <td>{{ $news->id }}</td>
+                                   <td>{{ str_limit($news->title, 100) }}</td>
+                                   <td>{{ str_limit($news->body, 250) }}</td>
                                    <td>
                                        <div>
                                            <a href="{{ action('Admin\NewsController@edit', ['id' => $news->id]) }}">編集</a>
