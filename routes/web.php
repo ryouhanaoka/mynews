@@ -26,22 +26,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 });
 
 //練習//
-Route::get('XXX', 'AAAController@bbb');
+//Route::get('XXX', 'AAAController@bbb');//
     
 //profileのcreate-group//
 Route::group(['prefix' => 'admin', 'middleware' => 'auth' ], function() {
     Route::get('profile/create', 'Admin\ProfileController@add');
     Route::Post('profile/create', 'Admin\ProfileController@create');
-});
-
-//profileのedit-group//
-Route::group(['prefix' => 'admin', 'middleware' => 'auth' ], function() {
-Route::get('profile/edit', 'Admin\ProfileController@edit');
-Route::post('profile/edit', 'Admin\ProfileController@update');
-    
+    Route::get('profile', 'Admin\ProfileController@index');
+    Route::get('profile/edit', 'Admin\ProfileController@edit');
+    Route::post('profile/edit', 'Admin\ProfileController@update');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
