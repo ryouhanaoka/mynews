@@ -10,57 +10,28 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="caption mx-auto">
-                                <div class="image">
-                                    @if ($headline->image_path)
-                                        <img src="{{ asset('storage/image/' . $headline->image_path) }}">
-                                    @endif
-                                </div>
-                                <div class="title p-2">
-                                    <h1>{{ str_limit($headline->title, 70) }}</h1>
+                                <div class="title p-2 mx-auto">
+                                    <h1>プロフィール</h1>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p class="body mx-auto">{{ str_limit($headline->body, 650) }}</p>
+                            <p class="name mx-auto">{{ str_limit($headline->name, 30) }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="gender mx-auto">{{ str_limit($headline->gender, 30) }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="hobby mx-auto">{{ str_limit($headline->hobby, 100) }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="introduction mx-auto">{{ str_limit($headline->introduction, 400) }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         @endif
         <hr color="#c0c0c0">
-        <div class="row">
-            <div class="posts col-md-8 mx-auto mt-3">
-                @foreach($posts as $post)
-                    <div class="post">
-                        <div class="row">
-                            <div class="text col-md-6">
-                                <div class="date">
-                                    {{ $post->updated_at->format('Y年m月d日') }}
-                                </div>
-                                <div class="name">
-                                    {{ str_limit($post->name, 30) }}
-                                </div>
-                                <div class="gender">
-                                    {{ str_limit($post->gender, 30) }}
-                                </div>
-                                <div class="hobby">
-                                    {{ str_limit($post->hobby, 100) }}
-                                </div>
-                                <div class="introduction mt-3">
-                                    {{ str_limit($post->introduction, 1500) }}
-                                </div>
-                            </div>
-                            <div class="image col-md-6 text-right mt-4">
-                                @if ($post->image_path)
-                                   <img src="{{ asset('storage/image/' . $post->image_path) }}">
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <hr color="#c0c0c0">
-                @endforeach
-            </div>
-        </div>
     </div>
     </div>
 @endsection
