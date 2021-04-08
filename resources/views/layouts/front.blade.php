@@ -19,7 +19,9 @@
 
         
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/front.css') }}" rel="stylesheet">        
+        <link href="{{ secure_asset('css/front.css') }}" rel="stylesheet">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="http://maps.google.com/maps/api/js?key=AIzaSyC7B1lcTVFPZXpTQt3dJr9E3o7A1SvxeLk&language=ja"></script>
     </head>
     <body>
         <div id="app">

@@ -48,6 +48,18 @@
                                     <img src="{{ $post->image_path }}">
                                 @endif
                             </div>
+                            <div id="map">
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7B1lcTVFPZXpTQt3dJr9E3o7A1SvxeLk&callback=initMap"></script>
+                            <script>
+                            var MyLatlng = new google.maps.LatLng(35.6811673, 139.7670516);
+                            var Options = {
+                            zoom: 15,
+                            center: MyLatlng,
+                            mapTypeId: 'roadmap'
+                            };
+                            var map = new google.maps.Map(document.getElementById('map'), Options);
+                            </script>
+                            </div>
                         </div>
                     </div>
                     <hr color="#c0c0c0">
