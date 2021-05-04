@@ -17,8 +17,9 @@ Route::get('/', function () {
 
 //news admin-group//
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::get('news/create', 'Admin\NewsController@add');
-    Route::post('news/create', 'Admin\NewsController@create');
+    Route::get('news/create', 'Admin\NewsController@add')->name('news.add');
+    Route::post('news/create', 'Admin\NewsController@judgecreate');
+    //Route::post('news/create', 'Admin\NewsController@create');
     Route::get('news', 'Admin\NewsController@index');
     Route::get('news/edit', 'Admin\NewsController@edit');
     Route::post('news/edit', 'Admin\NewsController@update');
@@ -26,8 +27,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', 'NewsController@index');
 });
 
-//練習//
-//Route::get('XXX', 'AAAController@bbb');//
     
 //profileのcreate-group//
 Route::group(['prefix' => 'admin', 'middleware' => 'auth' ], function() {

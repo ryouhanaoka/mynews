@@ -33,21 +33,21 @@ body {
   font-size: 0.8em;
 }
 
-.posts .posts .date {
+.posts .post .date {
   font-size: 0.6em;
   color: #999999;
 }
 
-.posts .posts .title {
+.posts .post .title {
   font-size: 1.2em;
   font-weight: bold;
 }
 
-.posts .posts .body {
+.posts .post .body {
   font-size: 0.8em;
 }
 
-.posts .posts .image img {
+.posts .post .image img {
   width: 250px;
 }
 

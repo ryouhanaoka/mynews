@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>ニュースの新規作成</h2>
-                <form action="{{ action('Admin\NewsController@create') }}"
+                <form action="{{ action('Admin\NewsController@judgecreate') }}"
                 method="post" enctype="multipart/form-data">
                 
                     @if (count($errors) > 0)
@@ -20,13 +20,13 @@
                     <div class="form-group row">
                          <label class="col-md-2">タイトル</label>
                          <div class="col-md-10">
-                             <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                             <input type="text" class="form-control" name="title" value="{{ old('title', $title) }}">
                          </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">本文</label>
                         <div class="col-md-10">
-                             <textarea class="form-control" name="body" rows="20">{{ old('body') }}
+                             <textarea class="form-control" name="body" rows="20">{{ old('body', $body) }}
                              </textarea>
                         </div>
                     </div>
@@ -34,14 +34,42 @@
                         <label class="col-md-2">画像</label>
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="image">
-                         </div>
+                        </div>
                     </div>
+                    <div id="map"></div>
+                        <input type="text" id="addressInput" name="name" value = "{{ $name }}" placeholder="住所入力">
+                        <button id="searchGeo" name="search">住所検索</button>
+                        <div>
+                            緯度:<input type="text" id="lat" name="lat" value="{{ $lat }}">
+                            経度:<input type="text" id="lng" name="lng" value="{{ $lng }}">
+                        </div>
                     {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="更新">
+                    <input type="submit" class="btn btn-primary" name="redirect" value="更新">
                 </form>
             </div>
         </div>
     </div>
     @endsection
-    </body>
-</html>
+    
+    @section('js')
+    <script>
+        function initMap() {
+          map = document.getElementById("map");
+          let tokyoTower = {lat: 35.6585769, lng: 139.7454506};
+          opt = {
+          zoom: 13,
+          center: tokyoTower,
+          };
+          mapObj = new google.maps.Map(map, opt);
+          marker = new google.maps.Marker({
+          position: tokyoTower,
+          map: mapObj,
+          title: 'tokyoTower',
+          });
+        }
+    </script>
+    
+    <script src={{ "https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=" . env('GOOGLE_MAP_API_KEY') . "&callback=initMap" }} async defer>
+	</script>
+	
+    @endsection

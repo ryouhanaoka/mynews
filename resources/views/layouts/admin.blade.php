@@ -15,11 +15,12 @@
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css? family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-        
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">        
+        <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet"> 
+        
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
     </head>
     <body>
         <div id="app">
@@ -70,4 +71,5 @@
             </main>
         </div>
     </body>
+    @yield('js')
 </html>
