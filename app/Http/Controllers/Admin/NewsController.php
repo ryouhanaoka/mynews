@@ -55,10 +55,7 @@ class NewsController extends Controller
       $news_form = $request->all();
       $place = Place::where('name',$request->name)->first();
       //なかった場合はplacesテーブルから取得したplace情報(id)を取得する。
-      if (!isset($place)) {
-          $place = new place;
-          $place->fill(['name' => $news_form['name'], 'lat' => $news_form['lat'], 'lng' => $news_form['lng']])->save();
-      }
+      
         
       $news = new News;
       if (isset($news_form['image'])) {
@@ -77,8 +74,14 @@ class NewsController extends Controller
     
       $news->fill($news_form);
       //プレイスの処理placeのidを設定し関連する。
-      $news->place_id = $place->id;
-      $news->save();
+      DB::transaction(function () {
+        if (!isset($place)) {
+            $place = new place;
+            $place->fill(['name' => $news_form['name'], 'lat' => $news_form['lat'], 'lng' => $news_form['lng']])->save();
+        }
+        $news->place_id = $place->id;
+        $news->save();
+      });
   }
   
   public function index(Request $request)
