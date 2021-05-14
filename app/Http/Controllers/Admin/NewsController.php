@@ -53,33 +53,32 @@ class NewsController extends Controller
       $this->validate($request, Place::$rules);
       
       // placeについてplaceテーブルの中から入力された場所の名前で検索
-      $news_form = $request->all();
-      $place = Place::where('name',$request->name)->first();
-      //なかった場合はplacesテーブルから取得したplace情報(id)を取得する。
-      
-        
-      $news = new News;
-      if (isset($news_form['image'])) {
-        $path = Storage::disk('s3')->putFile('/',$news_form['image'],'public');
-        $news->image_path = Storage::disk('s3')->url($path);
-      } else {
-          $news->image_path = null;
-      }
-    
-      unset($news_form['_token']);
-      unset($news_form['image']);
-      unset($news_form['name']);
-      unset($news_form['lat']);
-      unset($news_form['lng']);
-      unset($news_form['redirect']);
-    
-      $news->fill($news_form);
-      //プレイスの処理placeのidを設定し関連する。
       DB::transaction(function () {
+        $news_form = $request->all();
+        $place = Place::where('name',$request->name)->first();
+        //なかった場合はplacesテーブルから取得したplace情報(id)を取得する。
         if (!isset($place)) {
             $place = new place;
             $place->fill(['name' => $news_form['name'], 'lat' => $news_form['lat'], 'lng' => $news_form['lng']])->save();
         }
+          
+        $news = new News;
+        if (isset($news_form['image'])) {
+          $path = Storage::disk('s3')->putFile('/',$news_form['image'],'public');
+          $news->image_path = Storage::disk('s3')->url($path);
+        } else {
+            $news->image_path = null;
+        }
+      
+        unset($news_form['_token']);
+        unset($news_form['image']);
+        unset($news_form['name']);
+        unset($news_form['lat']);
+        unset($news_form['lng']);
+        unset($news_form['redirect']);
+      
+        $news->fill($news_form);
+        //プレイスの処理placeのidを設定し関連する。
         $news->place_id = $place->id;
         $news->save();
       });
