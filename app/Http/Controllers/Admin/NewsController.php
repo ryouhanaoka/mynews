@@ -49,11 +49,11 @@ class NewsController extends Controller
   
   public function create(Request $request)
   {
-      $this->validate($request, News::$rules);
-      $this->validate($request, Place::$rules);
+      DB::transaction(function () {
+        $this->validate($request, News::$rules);
+        $this->validate($request, Place::$rules);
       
       // placeについてplaceテーブルの中から入力された場所の名前で検索
-      DB::transaction(function () {
         $news_form = $request->all();
         $place = Place::where('name',$request->name)->first();
         //なかった場合はplacesテーブルから取得したplace情報(id)を取得する。
