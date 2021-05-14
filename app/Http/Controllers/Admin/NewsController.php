@@ -49,7 +49,7 @@ class NewsController extends Controller
   
   public function create(Request $request)
   {
-      DB::transaction(function () {
+      DB::transaction(function () use($request) {
         $this->validate($request, News::$rules);
         $this->validate($request, Place::$rules);
       
