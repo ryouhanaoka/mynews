@@ -13,4 +13,8 @@ class Place extends Model
         'lat' => 'required',
         'lng' => 'required'
         );
+    protected $casts = [
+        'lat' => 'float',
+        'lng' => 'float',
+    ];
 }

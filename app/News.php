@@ -17,4 +17,8 @@ class News extends Model
     {
         return $this->hasMany('App\History'); 
     }
+    public function place()
+    {
+        return $this->belongsTo('App\Place');
+    }
 }

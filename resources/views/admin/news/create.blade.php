@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>ニュースの新規作成</h2>
+                <h2>新規楽器情報</h2>
                 <form action="{{ action('Admin\NewsController@judgecreate') }}"
                 method="post" enctype="multipart/form-data">
                 
@@ -36,13 +36,20 @@
                             <input type="file" class="form-control-file" name="image">
                         </div>
                     </div>
-                    <div id="map"></div>
-                        <input type="text" id="addressInput" name="name" value = "{{ $name }}" placeholder="住所入力">
-                        <button id="searchGeo" name="search">住所検索</button>
-                        <div>
-                            緯度:<input type="text" id="lat" name="lat" value="{{ $lat }}">
-                            経度:<input type="text" id="lng" name="lng" value="{{ $lng }}">
+                    <div class="form-group row">
+                        <label class="col-md-2" for="image">地図</label>    
+                        <div id="map"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-md-2">
+                            <input type="text" id="addressInput" name="name" value = "{{ $name }}" placeholder="住所入力">
+                            <button id="searchGeo" name="search">住所検索</button>
+                            <div>
+                                <input type="hidden" id="lat" name="lat" value="{{ $lat }}">
+                                <input type="hidden" id="lng" name="lng" value="{{ $lng }}">
+                            </div>
                         </div>
+                    </div>
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" name="redirect" value="更新">
                 </form>
